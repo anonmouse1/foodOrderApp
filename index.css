@@ -1,0 +1,35 @@
+body {
+  margin: 0;
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+header {
+  background-image: url("/healthyFoood.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 20px 20px;
+  color: #7bc950;
+  font-size: 34px;
+}
+
+.food-inner {
+  display: flex;
+  flex-direction: row;
+  margin: 50px;
+  justify-content: space-evenly;
+  align-items: center;
+  border-bottom: solid rgb(208, 205, 205) 2px;
+}
+.food-container {
+  width: 25%;
+}
+
+.emoji {
+  font-size: 70px;
+  padding: 20px;
+}
