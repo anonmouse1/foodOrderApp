@@ -1,14 +1,56 @@
-//import { v4 as uuidv4 } from "https://jspm.dev/uuid";
 import { menuArray } from "./data";
 
+let orderInProcess = false;
+let orderHtml = ``;
+let orderInnerHtml = ``;
+let currentMenuHtml = getMenuHtml();
+
+//listen to any click on homepage
 document.addEventListener("click", function (e) {
-  if (e.target.dataset.add) {
-    handleAddFood(e.target.dataset.add);
+  if (e.target.dataset.food) {
+    orderInProcess = true;
+    console.log("item added");
+    currentMenuHtml += handleOrder(Number(e.target.dataset.food));
+    console.log("current menu:" + currentMenuHtml);
+    render();
   }
 });
 
-function handleAddFood(food) {
-  console.log(food.id);
+function handleOrder(food) {
+  let orderList = [];
+
+  if (orderInProcess) {
+    console.log("handle order called for food; " + food);
+    let selectedFood = menuArray.find(function (foodItem) {
+      return foodItem.id === food;
+    });
+    //add the food to the orderList array that holds all currently on order food
+
+    orderList.push(selectedFood);
+
+    console.log("Selected food: " + JSON.stringify(selectedFood));
+
+    orderList.forEach(function (foodItem) {
+      orderInnerHtml += `
+  <div class="food-item">
+    <p id="order-food-name">${foodItem.name}</p>
+    <button id="remove-bt"n"></button>
+    <p id="food-price">${foodItem.price}</p>
+  </div>
+  `;
+    });
+    orderHtml = `
+  <div class="orderHtml">
+    <p>Your Order</p>
+    ${orderInnerHtml}
+    <p id="total-text"></p>
+    <p id="total-number"></p>
+    <button id="place-order-btn">Place Order</button>
+  </div>`;
+    console.log(orderHtml);
+  }
+
+  return orderHtml;
 }
 
 function getMenuHtml() {
@@ -29,10 +71,11 @@ function getMenuHtml() {
     </div>
     `;
   });
+
   return menuHtml;
 }
 
 function render() {
-  document.getElementById("menu-container").innerHTML = getMenuHtml();
+  document.getElementById("menu-container").innerHTML = currentMenuHtml;
 }
 render();
