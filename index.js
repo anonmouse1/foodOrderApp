@@ -4,53 +4,46 @@ let orderInProcess = false;
 let orderHtml = ``;
 let orderInnerHtml = ``;
 let currentMenuHtml = getMenuHtml();
+let totalPrice = 0;
 
 //listen to any click on homepage
 document.addEventListener("click", function (e) {
   if (e.target.dataset.food) {
     orderInProcess = true;
     console.log("item added");
-    currentMenuHtml += handleOrder(Number(e.target.dataset.food));
-    console.log("current menu:" + currentMenuHtml);
+    let selectedFood = menuArray.find(function (foodItem) {
+      return foodItem.id === Number(e.target.dataset.food);
+    });
+    console.log("Selected food: " + JSON.stringify(selectedFood));
+    handleOrder(selectedFood);
     render();
   }
 });
 
 function handleOrder(food) {
-  let orderList = [];
-
   if (orderInProcess) {
-    console.log("handle order called for food; " + food);
-    let selectedFood = menuArray.find(function (foodItem) {
-      return foodItem.id === food;
-    });
+    console.log("handle order called for food; " + food.name);
     //add the food to the orderList array that holds all currently on order food
 
-    orderList.push(selectedFood);
+    totalPrice += food.price;
 
-    console.log("Selected food: " + JSON.stringify(selectedFood));
-
-    orderList.forEach(function (foodItem) {
-      orderInnerHtml += `
+    orderInnerHtml += `
   <div class="food-item">
-    <p id="order-food-name">${foodItem.name}</p>
-    <button id="remove-bt"n"></button>
-    <p id="food-price">${foodItem.price}</p>
+    <p id="order-food-name">${food.name}</p>
+    <button id="remove-btn"></button>
+    <p id="food-price">${food.price}</p>
   </div>
   `;
-    });
     orderHtml = `
-  <div class="orderHtml">
+  <div class="order">
     <p>Your Order</p>
     ${orderInnerHtml}
-    <p id="total-text"></p>
-    <p id="total-number"></p>
+    <p id="total-text">Total</p>
+    <p id="total-number">${totalPrice}</p>
     <button id="place-order-btn">Place Order</button>
   </div>`;
     console.log(orderHtml);
   }
-
-  return orderHtml;
 }
 
 function getMenuHtml() {
@@ -76,6 +69,11 @@ function getMenuHtml() {
 }
 
 function render() {
-  document.getElementById("menu-container").innerHTML = currentMenuHtml;
+  if (orderInProcess) {
+    document.getElementById("menu-container").innerHTML =
+      currentMenuHtml + orderHtml;
+  } else {
+    document.getElementById("menu-container").innerHTML = currentMenuHtml;
+  }
 }
 render();
