@@ -10,15 +10,35 @@ let totalPrice = 0;
 document.addEventListener("click", function (e) {
   if (e.target.dataset.food) {
     orderInProcess = true;
+
     console.log("item added");
     let selectedFood = menuArray.find(function (foodItem) {
       return foodItem.id === Number(e.target.dataset.food);
     });
+    selectedFood.isOrdered = true;
     console.log("Selected food: " + JSON.stringify(selectedFood));
+    getMenuHtml();
     handleOrder(selectedFood);
     render();
+  } else if (e.target.dataset.payment) {
+    handlePayment();
   }
 });
+
+function handlePayment() {
+  console.log("handle payment called");
+  const modal = document.getElementById("payment-modal");
+  modal.style.display = "flex";
+
+  const cardForm = document.getElementById("card-details");
+  cardForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    modal.style.display = "none";
+    orderInProcess = false;
+    render();
+  });
+  console.log(formData);
+}
 
 function handleOrder(food) {
   if (orderInProcess) {
@@ -29,18 +49,22 @@ function handleOrder(food) {
 
     orderInnerHtml += `
   <div class="food-item">
-    <p id="order-food-name">${food.name}</p>
-    <button id="remove-btn"></button>
-    <p id="food-price">${food.price}</p>
+    <div class="food-name-remove">
+        <p id="order-food-name" class="title ">${food.name}</p>
+        <input type="button" id="remove-btn" class="remove-btn" value="remove"></input>
+    </div>
+    <p id="food-price" class="title">$${food.price}</p>
   </div>
   `;
     orderHtml = `
   <div class="order">
-    <p>Your Order</p>
+    <p class="title">Your Order</p>
     ${orderInnerHtml}
-    <p id="total-text">Total</p>
-    <p id="total-number">${totalPrice}</p>
-    <button id="place-order-btn">Place Order</button>
+    <div class ="line-item">
+        <p id="total-text" class="title">Total</p>
+        <p id="total-number" class="title">$${totalPrice}</p>
+    </div>
+    <button id="place-order-btn"  data-payment="readyToPay">Place Order</button>
   </div>`;
     console.log(orderHtml);
   }
@@ -48,22 +72,27 @@ function handleOrder(food) {
 
 function getMenuHtml() {
   let menuHtml = ``;
+  let isOrdered = ``;
 
   menuArray.forEach(function (food) {
+    if (food.isOrdered) {
+      isOrdered = `ordered`;
+    }
     menuHtml += `
   
     <div class="food-inner">
       <p id="menu-emoji" class="emoji">${food.emoji}</p>
       <div class="food-container" id="food-container">
-          <p id="food-title">${food.name}</p>
+          <p id="food-title class="title">${food.name}</p>
           <p id="food-ingredients">${food.ingredients}</p>
           <p id="food-price">$ ${food.price}</p>
       </div>
-      <i class="fa-solid fa-plus fa-xl" data-food=${food.id}></i>
+      <i class="fa-solid fa-plus fa-xl plus ${isOrdered}" data-food=${food.id}></i>
       
     </div>
     `;
   });
+  console.log(menuHtml);
 
   return menuHtml;
 }

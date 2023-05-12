@@ -30,6 +30,27 @@
     <div class="menu-container" id="menu-container">
       <!-- Menu items appear here-->
     </div>
+    <div class="payment-modal" id="payment-modal">
+      <div class="payment-modal-inner" id="payment-modal-inner">
+        <h2>Enter card details</h2>
+        <form id="card-details">
+          <input
+            type="text"
+            required
+            placeholder="Enter your name"
+            id="cardholder-name"
+          />
+          <input
+            type="text"
+            required
+            placeholder="Enter card number"
+            id="card-number"
+          />
+          <input type="text" required placeholder="Enter CVV" id="card-CVV" />
+          <button type="submit" id="pay-now-btn">Pay now</button>
+        </form>
+      </div>
+    </div>
 
     <script src="index.js" type="module"></script>
   </body>

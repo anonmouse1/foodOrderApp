@@ -1,6 +1,7 @@
 body {
   margin: 0;
   font-family: "Source Sans Pro", sans-serif;
+  color: #2e282a;
 }
 
 header {
@@ -13,8 +14,31 @@ header {
   flex-direction: row;
   justify-content: center;
   padding: 20px 20px;
-  color: #7bc950;
+  color: #16db99;
   font-size: 34px;
+}
+
+button {
+  background-color: #16db99;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  width: 100%;
+}
+
+input {
+  padding: 10px;
+  margin: 10px;
+  width: 85%;
+}
+
+footer {
+  text-align: center;
 }
 
 .food-inner {
@@ -34,10 +58,78 @@ header {
   padding: 20px;
 }
 
+.plus {
+  cursor: pointer;
+}
+
+.ordered {
+  color: #16db99;
+  background-color: #16db99;
+}
+
 .order {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   margin: 50px;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.title {
+  font-size: 25px;
+  margin: 20px;
+}
+
+.food-item,
+.line-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-start;
+  width: 100%;
+  margin: 20px;
+}
+
+.food-name-remove {
+  display: flex;
+  flex-direction: row;
+}
+
+.remove-btn {
+  background-color: none;
+  color: gray;
+  border: none;
+  padding: 2px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 12px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+/* modal */
+
+.payment-modal {
+  display: none;
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  height: 420px;
+  width: 350px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 100px 2px #666;
+  background-color: #ffffff;
+  color: #2e282a;
+}
+
+.payment-modal-inner {
+  width: 290px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
 }

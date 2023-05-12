@@ -5,6 +5,7 @@ export const menuArray = [
     price: 12,
     emoji: "🍲",
     id: 0,
+    isOrdered: false,
   },
   {
     name: "Acai Bowl",
@@ -12,6 +13,7 @@ export const menuArray = [
     price: 9,
     emoji: "🥣",
     id: 1,
+    isOrdered: false,
   },
   {
     name: "Kale Salad",
@@ -19,6 +21,7 @@ export const menuArray = [
     price: 10,
     emoji: "🥗",
     id: 2,
+    isOrdered: false,
   },
   {
     name: "Grilled Chicken Sandwich",
@@ -26,6 +29,7 @@ export const menuArray = [
     price: 11,
     emoji: "🥪",
     id: 3,
+    isOrdered: false,
   },
   {
     name: "Turkey Burger",
@@ -33,6 +37,7 @@ export const menuArray = [
     price: 12,
     emoji: "🍔",
     id: 4,
+    isOrdered: false,
   },
   {
     name: "Salmon Bowl",
@@ -45,6 +50,7 @@ export const menuArray = [
     price: 14,
     emoji: "🍲",
     id: 5,
+    isOrdered: false,
   },
   {
     name: "Veggie Wrap",
@@ -52,6 +58,7 @@ export const menuArray = [
     price: 8,
     emoji: "🌯",
     id: 6,
+    isOrdered: false,
   },
   {
     name: "Roasted Turkey Sandwich",
@@ -59,6 +66,7 @@ export const menuArray = [
     price: 10,
     emoji: "🥪",
     id: 7,
+    isOrdered: false,
   },
   {
     name: "Spinach Salad",
@@ -66,6 +74,7 @@ export const menuArray = [
     price: 9,
     emoji: "🥗",
     id: 8,
+    isOrdered: false,
   },
   {
     name: "Sweet Potato Fries",
@@ -73,6 +82,7 @@ export const menuArray = [
     price: 5,
     emoji: "🍟",
     id: 9,
+    isOrdered: false,
   },
   {
     name: "Grilled Shrimp Skewers",
@@ -80,6 +90,7 @@ export const menuArray = [
     price: 14,
     emoji: "🍢",
     id: 10,
+    isOrdered: false,
   },
   {
     name: "Hummus Plate",
@@ -87,6 +98,7 @@ export const menuArray = [
     price: 8,
     emoji: "🍽️",
     id: 11,
+    isOrdered: false,
   },
   {
     name: "Grilled Chicken Caesar Salad",
@@ -99,6 +111,7 @@ export const menuArray = [
     price: 12,
     emoji: "🥗",
     id: 12,
+    isOrdered: false,
   },
   {
     name: "Vegan Burger",
@@ -106,5 +119,6 @@ export const menuArray = [
     price: 13,
     emoji: "🍔",
     id: 13,
+    isOrdered: false,
   },
 ];
