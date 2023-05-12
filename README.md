@@ -1,6 +1,6 @@
 # Food Order App
 
-A basic food ordering app built with javascript.
+A basic front-end for a food ordering app built with javascript.
 Quick start:
 
 ```

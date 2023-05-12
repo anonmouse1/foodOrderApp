@@ -29,6 +29,10 @@ function handlePayment() {
   console.log("handle payment called");
   const modal = document.getElementById("payment-modal");
   modal.style.display = "flex";
+  const closeModalBtn = document.getElementById("modal-close-btn");
+  closeModalBtn.addEventListener("click", function () {
+    modal.style.display = "none";
+  });
 
   const cardForm = document.getElementById("card-details");
   cardForm.addEventListener("submit", function (e) {
@@ -37,7 +41,6 @@ function handlePayment() {
     orderInProcess = false;
     render();
   });
-  console.log(formData);
 }
 
 function handleOrder(food) {
@@ -80,14 +83,14 @@ function getMenuHtml() {
     }
     menuHtml += `
   
-    <div class="food-inner">
+    <div class="food-inner ${isOrdered}">
       <p id="menu-emoji" class="emoji">${food.emoji}</p>
       <div class="food-container" id="food-container">
           <p id="food-title class="title">${food.name}</p>
           <p id="food-ingredients">${food.ingredients}</p>
           <p id="food-price">$ ${food.price}</p>
       </div>
-      <i class="fa-solid fa-plus fa-xl plus ${isOrdered}" data-food=${food.id}></i>
+      <i class="fa-solid fa-plus fa-xl plus " data-food=${food.id}></i>
       
     </div>
     `;
