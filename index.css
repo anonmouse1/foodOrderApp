@@ -141,6 +141,10 @@ footer {
   justify-content: space-evenly;
   align-items: center;
 }
-
-.close-modal-btn-container {
+/* light green background, black text */
+.order-paid {
+  text-align: center;
+  padding-left: 20px 40px;
+  background-color: #16db99;
+  opacity: 0.5;
 }

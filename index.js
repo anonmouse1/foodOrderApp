@@ -2,9 +2,11 @@ import { menuArray } from "./data";
 
 let orderInProcess = false;
 let orderHtml = ``;
+let orderPaidHtml = ``;
 let orderInnerHtml = ``;
 let currentMenuHtml = getMenuHtml();
 let totalPrice = 0;
+let hasPaid = false;
 
 //listen to any click on homepage
 document.addEventListener("click", function (e) {
@@ -35,10 +37,16 @@ function handlePayment() {
   });
 
   const cardForm = document.getElementById("card-details");
+  const formData = new FormData(cardForm);
   cardForm.addEventListener("submit", function (e) {
     e.preventDefault();
     modal.style.display = "none";
     orderInProcess = false;
+    orderPaidHtml = `
+    <p id="order-paid" class="order-paid">Thanks name for your order!</p>`;
+    hasPaid = true;
+    console.log("hasPaid: " + hasPaid);
+    console.log("Customer name" + formData.get("name"));
     render();
   });
 }
@@ -104,6 +112,9 @@ function render() {
   if (orderInProcess) {
     document.getElementById("menu-container").innerHTML =
       currentMenuHtml + orderHtml;
+  } else if (!orderInProcess && hasPaid) {
+    document.getElementById("menu-container").innerHTML =
+      currentMenuHtml + orderPaidHtml;
   } else {
     document.getElementById("menu-container").innerHTML = currentMenuHtml;
   }
