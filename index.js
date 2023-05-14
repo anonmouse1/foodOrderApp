@@ -37,14 +37,20 @@ function handlePayment() {
   });
 
   const cardForm = document.getElementById("card-details");
-  const formData = new FormData(cardForm);
+
   cardForm.addEventListener("submit", function (e) {
     e.preventDefault();
     modal.style.display = "none";
     orderInProcess = false;
+    const formData = new FormData(cardForm);
+    //.trim removes whitespace from both ends of a string then split splits the string into an array of substrings
+    let firstName = formData.get("name").trim().split(" ")[0];
     orderPaidHtml = `
-    <p id="order-paid" class="order-paid">Thanks name for your order!</p>`;
+    <div class="order-paid">
+      <p id="order-paid-txt" >Thanks, ${firstName} ! Sit tight, your order is on the way 👩‍🍳 !</p>
+    </div>`;
     hasPaid = true;
+
     console.log("hasPaid: " + hasPaid);
     console.log("Customer name" + formData.get("name"));
     render();

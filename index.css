@@ -143,8 +143,18 @@ footer {
 }
 /* light green background, black text */
 .order-paid {
-  text-align: center;
-  padding-left: 20px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: #16db99;
   opacity: 0.5;
+  width: 75%;
+  margin: auto; /* Center the div horizontally */
+  padding: 0;
+  font-size: 25px;
+  color: #14452f;
+}
+
+.order-paid p {
+  color: #14452f;
 }
