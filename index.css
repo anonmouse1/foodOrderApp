@@ -14,8 +14,10 @@ header {
   flex-direction: row;
   justify-content: center;
   padding: 20px 20px;
-  color: #16db99;
-  font-size: 34px;
+  color: #ffff;
+  font-size: 45px;
+  height: 20vh;
+  text-shadow: 2px 2px 2px #2e282a;
 }
 
 button {
@@ -80,7 +82,6 @@ footer {
 
 .title {
   font-size: 25px;
-  margin: 20px;
 }
 
 .food-item,
@@ -153,6 +154,7 @@ footer {
   padding: 0;
   font-size: 25px;
   color: #14452f;
+  border-radius: 5px;
 }
 
 .order-paid p {

@@ -47,7 +47,7 @@ function handlePayment() {
     let firstName = formData.get("name").trim().split(" ")[0];
     orderPaidHtml = `
     <div class="order-paid">
-      <p id="order-paid-txt" >Thanks, ${firstName} ! Sit tight, your order is on the way 👩‍🍳 !</p>
+      <p id="order-paid-txt" >Thanks, ${firstName} ! Sit tight, your order is on the way 👩‍🍳 </p>
     </div>`;
     hasPaid = true;
 
@@ -67,7 +67,7 @@ function handleOrder(food) {
     orderInnerHtml += `
   <div class="food-item">
     <div class="food-name-remove">
-        <p id="order-food-name" class="title ">${food.name}</p>
+        <p id="order-food-name" class="title">${food.name}</p>
         <input type="button" id="remove-btn" class="remove-btn" value="remove"></input>
     </div>
     <p id="food-price" class="title">$${food.price}</p>
@@ -100,9 +100,9 @@ function getMenuHtml() {
     <div class="food-inner ${isOrdered}">
       <p id="menu-emoji" class="emoji">${food.emoji}</p>
       <div class="food-container" id="food-container">
-          <p id="food-title class="title">${food.name}</p>
+          <p id="food-title" class="title">${food.name}</p>
           <p id="food-ingredients">${food.ingredients}</p>
-          <p id="food-price">$ ${food.price}</p>
+          <p id="food-price" class="title">$ ${food.price}</p>
       </div>
       <i class="fa-solid fa-plus fa-xl plus " data-food=${food.id}></i>
       
