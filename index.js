@@ -42,6 +42,7 @@ function handlePayment() {
   console.log("handle payment called");
   const modal = document.getElementById("payment-modal");
   modal.style.display = "flex";
+  modal.style.flexDirection = "column";
   const closeModalBtn = document.getElementById("modal-close-btn");
   closeModalBtn.addEventListener("click", function () {
     modal.style.display = "none";
