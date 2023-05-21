@@ -14,13 +14,13 @@ let orderedItems = [];
 document.addEventListener("click", function (e) {
   if (e.target.dataset.food) {
     orderInProcess = true;
-    console.log("item added");
+    ////console.log("item added");
     let selectedFood = menuArray.find(function (foodItem) {
       return foodItem.id === Number(e.target.dataset.food);
     });
     selectedFood.isOrdered = true;
 
-    console.log("Selected food: " + JSON.stringify(selectedFood));
+    //console.log("Selected food: " + JSON.stringify(selectedFood));
     getMenuHtml();
     handleOrder(selectedFood);
     render();
@@ -30,8 +30,8 @@ document.addEventListener("click", function (e) {
     });
     //selectedFood.isOrdered = false;
 
-    console.log("item removed: " + selectedFood.name);
-    console.log("dataset Remove: " + e.target.dataset.remove);
+    //console.log("item removed: " + selectedFood.name);
+    //console.log("dataset Remove: " + e.target.dataset.remove);
     handleRemove(selectedFood);
   } else if (e.target.dataset.payment) {
     handlePayment();
@@ -39,7 +39,7 @@ document.addEventListener("click", function (e) {
 });
 
 function handlePayment() {
-  console.log("handle payment called");
+  //console.log("handle payment called");
   const modal = document.getElementById("payment-modal");
   modal.style.display = "flex";
   modal.style.flexDirection = "column";
@@ -63,15 +63,15 @@ function handlePayment() {
     </div>`;
     hasPaid = true;
 
-    console.log("hasPaid: " + hasPaid);
-    console.log("Customer name" + formData.get("name"));
+    //console.log("hasPaid: " + hasPaid);
+    //console.log("Customer name" + formData.get("name"));
     render();
   });
 }
 
 function handleOrder(food) {
   if (orderInProcess) {
-    console.log("handle order called for food; " + food.name);
+    //console.log("handle order called for food; " + food.name);
     // Create a copy of the selectedFood object
     let copiedFood = Object.assign({}, food);
     orderedItems.push(copiedFood);
@@ -82,13 +82,13 @@ function handleOrder(food) {
       }
     });
 
-    console.log("orderedItems: " + JSON.stringify(orderedItems));
+    //console.log("orderedItems: " + JSON.stringify(orderedItems));
 
     orderInnerHtml = ``;
     totalPrice = 0;
     orderedItems.forEach(function (food) {
       totalPrice += food.price;
-      console.log("Total price inside forEach: " + totalPrice);
+      //console.log("Total price inside forEach: " + totalPrice);
       orderInnerHtml += `
   <div class="food-item">
     <div class="food-name-remove">
@@ -109,20 +109,20 @@ function handleOrder(food) {
     </div>
     <button id="place-order-btn"  data-payment="readyToPay">Place Order</button>
   </div>`;
-    console.log(orderHtml);
+    //console.log(orderHtml);
   }
   render();
 }
 
 function handleRemove(food) {
-  //console.log("handle remove called for food; " + food.name);
+  ////console.log("handle remove called for food; " + food.name);
   orderedItems = orderedItems.filter(function (foodItem) {
     return foodItem.uuid !== food.uuid;
   });
   totalPrice -= food.price;
-  console.log("totalPrice: " + totalPrice);
+  //console.log("totalPrice: " + totalPrice);
 
-  console.log("orderedItems: " + JSON.stringify(orderedItems));
+  //console.log("orderedItems: " + JSON.stringify(orderedItems));
   render();
 }
 
@@ -148,7 +148,7 @@ function getMenuHtml() {
     </div>
     `;
   });
-  console.log(menuHtml);
+  //console.log(menuHtml);
 
   return menuHtml;
 }
@@ -159,7 +159,7 @@ function render() {
     totalPrice = 0;
     orderedItems.forEach(function (food) {
       totalPrice += food.price;
-      console.log("Total price inside forEach: " + totalPrice);
+      //console.log("Total price inside forEach: " + totalPrice);
       orderInnerHtml += `
         <div class="food-item">
           <div class="food-name-remove">
