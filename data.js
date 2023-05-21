@@ -6,6 +6,7 @@ export const menuArray = [
     emoji: "🍲",
     id: 0,
     isOrdered: false,
+    uuid: "notSet",
   },
   {
     name: "Acai Bowl",
@@ -14,6 +15,7 @@ export const menuArray = [
     emoji: "🥣",
     id: 1,
     isOrdered: false,
+    uuid: "notSet",
   },
   {
     name: "Kale Salad",
@@ -22,6 +24,7 @@ export const menuArray = [
     emoji: "🥗",
     id: 2,
     isOrdered: false,
+    uuid: "notSet",
   },
   {
     name: "Grilled Chicken Sandwich",
@@ -30,6 +33,7 @@ export const menuArray = [
     emoji: "🥪",
     id: 3,
     isOrdered: false,
+    uuid: "notSet",
   },
   {
     name: "Turkey Burger",
@@ -38,6 +42,7 @@ export const menuArray = [
     emoji: "🍔",
     id: 4,
     isOrdered: false,
+    uuid: "notSet",
   },
   {
     name: "Salmon Bowl",
@@ -51,6 +56,7 @@ export const menuArray = [
     emoji: "🍲",
     id: 5,
     isOrdered: false,
+    uuid: "notSet",
   },
   {
     name: "Veggie Wrap",
@@ -59,6 +65,7 @@ export const menuArray = [
     emoji: "🌯",
     id: 6,
     isOrdered: false,
+    uuid: "notSet",
   },
   {
     name: "Roasted Turkey Sandwich",
@@ -67,6 +74,7 @@ export const menuArray = [
     emoji: "🥪",
     id: 7,
     isOrdered: false,
+    uuid: "notSet",
   },
   {
     name: "Spinach Salad",
@@ -75,6 +83,7 @@ export const menuArray = [
     emoji: "🥗",
     id: 8,
     isOrdered: false,
+    uuid: "notSet",
   },
   {
     name: "Sweet Potato Fries",
@@ -83,6 +92,7 @@ export const menuArray = [
     emoji: "🍟",
     id: 9,
     isOrdered: false,
+    uuid: "notSet",
   },
   {
     name: "Grilled Shrimp Skewers",
@@ -91,6 +101,7 @@ export const menuArray = [
     emoji: "🍢",
     id: 10,
     isOrdered: false,
+    uuid: "notSet",
   },
   {
     name: "Hummus Plate",
@@ -99,6 +110,7 @@ export const menuArray = [
     emoji: "🍽️",
     id: 11,
     isOrdered: false,
+    uuid: "notSet",
   },
   {
     name: "Grilled Chicken Caesar Salad",
@@ -112,6 +124,7 @@ export const menuArray = [
     emoji: "🥗",
     id: 12,
     isOrdered: false,
+    uuid: "notSet",
   },
   {
     name: "Vegan Burger",
@@ -120,5 +133,6 @@ export const menuArray = [
     emoji: "🍔",
     id: 13,
     isOrdered: false,
+    uuid: "notSet",
   },
 ];

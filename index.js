@@ -1,4 +1,5 @@
 import { menuArray } from "./data";
+import { v4 as uuidv4 } from "https://jspm.dev/uuid";
 
 let orderInProcess = false;
 let orderHtml = ``;
@@ -8,20 +9,30 @@ let currentMenuHtml = getMenuHtml();
 let totalPrice = 0;
 let hasPaid = false;
 
+let orderedItems = [];
 //listen to any click on homepage
 document.addEventListener("click", function (e) {
   if (e.target.dataset.food) {
     orderInProcess = true;
-
     console.log("item added");
     let selectedFood = menuArray.find(function (foodItem) {
       return foodItem.id === Number(e.target.dataset.food);
     });
     selectedFood.isOrdered = true;
+
     console.log("Selected food: " + JSON.stringify(selectedFood));
     getMenuHtml();
     handleOrder(selectedFood);
     render();
+  } else if (e.target.dataset.remove) {
+    let selectedFood = orderedItems.find(function (foodItem) {
+      return foodItem.uuid === e.target.dataset.remove;
+    });
+    //selectedFood.isOrdered = false;
+
+    console.log("item removed: " + selectedFood.name);
+    console.log("dataset Remove: " + e.target.dataset.remove);
+    handleRemove(selectedFood);
   } else if (e.target.dataset.payment) {
     handlePayment();
   }
@@ -60,19 +71,33 @@ function handlePayment() {
 function handleOrder(food) {
   if (orderInProcess) {
     console.log("handle order called for food; " + food.name);
-    //add the food to the orderList array that holds all currently on order food
+    // Create a copy of the selectedFood object
+    let copiedFood = Object.assign({}, food);
+    orderedItems.push(copiedFood);
+    //edit the orderItems array to set uuid value for the food that has been ordered
+    orderedItems.forEach(function (food) {
+      if (food.uuid === "notSet") {
+        food.uuid = uuidv4();
+      }
+    });
 
-    totalPrice += food.price;
+    console.log("orderedItems: " + JSON.stringify(orderedItems));
 
-    orderInnerHtml += `
+    orderInnerHtml = ``;
+    totalPrice = 0;
+    orderedItems.forEach(function (food) {
+      totalPrice += food.price;
+      console.log("Total price inside forEach: " + totalPrice);
+      orderInnerHtml += `
   <div class="food-item">
     <div class="food-name-remove">
         <p id="order-food-name" class="title">${food.name}</p>
-        <input type="button" id="remove-btn" class="remove-btn" value="remove"></input>
+        <input type="button" id="remove-btn" class="remove-btn" value="remove" data-remove=${food.uuid}></input>
     </div>
     <p id="food-price" class="title">$${food.price}</p>
   </div>
   `;
+    });
     orderHtml = `
   <div class="order">
     <p class="title">Your Order</p>
@@ -85,6 +110,19 @@ function handleOrder(food) {
   </div>`;
     console.log(orderHtml);
   }
+  render();
+}
+
+function handleRemove(food) {
+  //console.log("handle remove called for food; " + food.name);
+  orderedItems = orderedItems.filter(function (foodItem) {
+    return foodItem.uuid !== food.uuid;
+  });
+  totalPrice -= food.price;
+  console.log("totalPrice: " + totalPrice);
+
+  console.log("orderedItems: " + JSON.stringify(orderedItems));
+  render();
 }
 
 function getMenuHtml() {
@@ -116,6 +154,32 @@ function getMenuHtml() {
 
 function render() {
   if (orderInProcess) {
+    orderInnerHtml = ``;
+    totalPrice = 0;
+    orderedItems.forEach(function (food) {
+      totalPrice += food.price;
+      console.log("Total price inside forEach: " + totalPrice);
+      orderInnerHtml += `
+        <div class="food-item">
+          <div class="food-name-remove">
+            <p id="order-food-name" class="title">${food.name}</p>
+            <input type="button" id="remove-btn" class="remove-btn" value="remove" data-remove=${food.uuid}></input>
+          </div>
+          <p id="food-price" class="title">$${food.price}</p>
+        </div>
+      `;
+    });
+
+    orderHtml = `
+      <div class="order">
+        <p class="title">Your Order</p>
+        ${orderInnerHtml}
+        <div class="line-item">
+          <p id="total-text" class="title">Total</p>
+          <p id="total-number" class="title">$${totalPrice}</p>
+        </div>
+        <button id="place-order-btn" data-payment="readyToPay">Place Order</button>
+      </div>`;
     document.getElementById("menu-container").innerHTML =
       currentMenuHtml + orderHtml;
   } else if (!orderInProcess && hasPaid) {
